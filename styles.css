@@ -87,6 +87,9 @@ h3 {
     min-width: 220px;
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
+    justify-content: flex-end;
+    /* align-items: center; */
 }
 
 .crew-category {
@@ -98,15 +101,30 @@ h3 {
     color: #ddd;
 }
 
-
-.date-container {
-    padding: 1em 0;
-    background-color: #1e90ff;
-    color: #ffffff;
-    text-align: center;
-    border-radius: 0.5em;
-    font-size: 30px;
+.datetime-container{
+    font-size: 1.6rem;
+    margin-top: auto;
+    margin-bottom: 40%;
 }
+
+.display-date {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+  
+.display-time {
+    display: flex;
+    font-weight: bold;
+    font-size: 2rem;
+    border: 2px solid #ffd868;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: ease-in-out 0.1s;
+    justify-content: center;
+  }
+  
 
 /* Flights Section Styles */
 .flights-section {

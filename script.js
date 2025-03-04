@@ -1,34 +1,53 @@
-let dateContainer = document.querySelector(".date-container");
-const weekdays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+const displayTime = document.querySelector(".display-time");
+// Time
+function showTime() {
+  let time = new Date();
+  displayTime.innerText = time.toLocaleTimeString("en-US", { hour12: false });
+  setTimeout(showTime, 1000);
+}
 
-const dateClock = setInterval(function dateTime() {
-  const today = new Date();
-  let date = today.getDate();
-  let day = weekdays[today.getDay()];
-  let month = monthNames[today.getMonth()];
+showTime();
 
+// Date
+function updateDate() {
+  let today = new Date();
 
-  dateContainer.innerHTML = `<p>${day}</p><p>${month} <span>${date}</span></p>`;
-}, 1000);
+  // return number
+  let dayName = today.getDay(),
+    dayNum = today.getDate(),
+    month = today.getMonth(),
+    year = today.getFullYear();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const dayWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  // value -> ID of the html element
+  const IDCollection = ["day", "daynum", "month", "year"];
+  // return value array with number as a index
+  const val = [dayWeek[dayName], dayNum, months[month], year];
+  for (let i = 0; i < IDCollection.length; i++) {
+    document.getElementById(IDCollection[i]).firstChild.nodeValue = val[i];
+  }
+}
+
+updateDate();
