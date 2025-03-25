@@ -1,89 +1,336 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Helicopter Operations Dashboard</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        <!-- Favicon links -->
+        <link rel="icon" href="./src/B-11691 model.png" type="image/png">
+        <link rel="shortcut icon" href="./src/B-11691 model.png" type="image/png">
+        <!-- iOS/Apple specific favicon -->
+        <link rel="apple-touch-icon" href="./src/B-11691 model.png">
+    </head>
+<body>
+    <div class="dashboard">
+        <div class="top-row">
+            <!-- METAR Section with external widget -->
+            <div class="metar-section panel">
+                <h2>WEATHER</h2>
+                <div class="METAR-widget">
+                    <div id="metar-data">Loading METAR data...</div>
+                </div>
+                <div class="weather-widget">
+                    <iframe src="https://www.youtube.com/embed/fjhg3gAnMFg?si=_1R_RDKqWxPKi2qF&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <!-- <a href="https://metar-taf.com/RCMQ" id="metartaf-wkTKqfAW" style="font-size:18px; font-weight:500; color:#000; width:300px; height:435px; display:block">METAR Taichung International Airport / Ching Chuang Kang Air Base</a> -->
+                </div>
+            </div>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.4.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.4.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+            <!-- Modify the Windy Section in index.html around line 51 -->
+        <!-- Replace the current windy-section with this: -->
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+        <!-- Windy Map & Flight Tracking Section -->
+        <div class="windy-section panel">
+            <div class="section-header">
+                <h2>MAPS & TRACKING</h2>
+                <div class="toggle-container">
+                    <button id="toggle-windy" class="toggle-btn active">WINDY</button>
+                    <button id="toggle-tracking" class="toggle-btn">FLIGHT TRACKING</button>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Windy Widget (initially visible) -->
+                <div id="windy-container" class="widget-container active">
+                    <div class="windy-widget">
+                        <iframe height="435" src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=kt&zoom=7&overlay=wind&product=ecmwf&level=surface&lat=23.75&lon=121.025&detailLat=24.10664717920179&detailLon=120.19042968750001&marker=true" frameborder="0"></iframe>
+                    </div>
+                </div>
+        
+        <!-- Replace the existing tracking-container div in your HTML with this -->
+
+                <div id="tracking-container" class="widget-container">
+                    <div class="flight-tracking-widget">
+                        <div class="radar-container">
+                            <!-- Flightradar24 Embed -->
+                            <iframe id="adsb-iframe" src="https://globe.adsbexchange.com/?lat=24.265&lon=120.621&zoom=10&hideButtons&hideSidebar&mapDim=0" 
+                                frameborder="0" 
+                                width="100%" 
+                                height="400" 
+                                scrolling="no">
+                            </iframe>
+                            <!-- <iframe id="fr24-iframe" src="https://www.flightradar24.com/simple?lat=24.2647&lon=120.6212&z=10&airports=1&size=large" 
+                                frameborder="0" 
+                                width="100%" 
+                                height="400" 
+                                scrolling="no">
+                            </iframe> -->
+                        </div>
+                        <!-- <div class="widget-description">
+                            <p>Live aircraft tracking data provided by Flightradar24. Data updates automatically every few seconds.</p>
+                            <p>RCMQ (Taichung Airport) is shown in the center of the map.</p>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Crew & Date Section -->
+            <div class="crew-section panel">
+                <h2>CREW ON DUTY</h2>
+                    <div class="crew-category">
+                        <h3>PILOTS</h3>
+                        <p id="pilots-on-duty"></p>
+                    </div>
+                    <div class="crew-category">
+                        <h3>HOIST OPERATOR</h3>
+                        <p id="hoist-on-duty"></p>
+                    </div>
+                
+                <div class="datetime-container">
+                    <div class="display-date">
+                      <span id="day">day</span>,
+                      <span id="daynum">00</span>
+                      <span id="month">month</span>
+                      <span id="year">0000</span>
+                    </div>
+                    <div class="display-time"></div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="bottom-row">
+            <!-- Updated Scheduled Flights Section with Date Column -->
+            <div class="flights-section panel">
+                <h2>UPCOMING FLIGHTS</h2>
+                <table class="flights-table">
+                    <thead>
+                        <tr>
+                            <th>FLIGHT</th>
+                            <th>CUSTOMER</th>
+                            <th>DESTINATION</th>
+                            <th>DATE</th>
+                            <th>TIME</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="flights-table-body">
+                        <!-- Flights will be added via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Helicopter Image Section -->
+            <div class="helicopter-section panel">
+                <!-- <h2>AIRCRAFT STATUS</h2> -->
+                <!-- Helicopter Status Dashboard -->
+                <div class="helicopter-dashboard">
+                    <!-- Status Header -->
+                    <div class="status-header" id="status-header">
+                        <div class="status-info">
+                            <span class="helicopter-id">B-11691</span>
+                            <span class="status-text" id="status-text">SERVICEABLE</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-content">
+                        <!-- Helicopter Image -->
+                        <div class="helicopter-image">
+                            <img src="./src/B-11691 model.png" alt="Helicopter B-11691" id="helicopter-img">
+                        </div>
+                        
+                        <!-- Helicopter Details -->
+                        <div class="helicopter-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Model</div>
+                                    <div class="detail-value">AW169</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Location</div>
+                                    <div class="detail-value" id="helicopter-location">RCMQ</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Flight Hours</div>
+                                    <div class="detail-value" id="flight-hours">139.57</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Hoist Cycles</div>
+                                    <div class="detail-value" id="hoistcycles">482</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Last Maintenance</div>
+                                    <div class="detail-value" id="last-maintenance">2025-02-10</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Next Maintenance</div>
+                                    <div class="detail-value" id="next-maintenance">2025-04-12</div>
+                                </div>
+                            </div>
+                            
+                            <div class="status-notes">
+                                <div class="detail-label">Status Notes</div>
+                                <div class="notes-container" id="notes-container">
+                                    Ready for operations
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+    <!-- Updated Admin UI with Aircraft Data Editing and Date for Scheduled Flights -->
+    <div class="admin-ui">
+        <div class="crew-toggle">
+            <h3>Crew On Duty</h3>
+            <button class="crew-btn off-duty" data-role="pilots" data-crew="ASO">ASO</button>
+            <button class="crew-btn off-duty" data-crew="FOO" data-role="pilots">FOO</button>
+            <button class="crew-btn off-duty" data-crew="ILO" data-role="pilots">ILO</button>
+            <button class="crew-btn off-duty" data-crew="ACN" data-role="pilots">ACN</button>
+            <button class="crew-btn off-duty" data-crew="GLI" data-role="pilots">GLI</button>
+            <button class="crew-btn off-duty" data-crew="MLE" data-role="hoist">MLE</button>
+            <button class="crew-btn off-duty" data-crew="MCH" data-role="hoist">MCH</button>
+            <button class="crew-btn off-duty" data-crew="DHU" data-role="hoist">DHU</button>
+            <button class="crew-btn off-duty" data-crew="PMO" data-role="hoist">PMO</button>
+        </div>
+
+        <div class="flight-input">
+            <h3>Upcoming Flights</h3>
+            <input type="text" id="flight-number" placeholder="Flight">
+            <input type="text" id="customer" placeholder="Customer">
+            <input type="text" id="destination" placeholder="Destination">
+            <input type="date" id="flight-date" placeholder="Date">
+            <input type="time" id="flight-time">
+            <select id="flight-status">
+                <option>ON-TIME</option>
+                <option>DELAYED</option>
+                <option>CANCELLED</option>
+                <option>CHECK-IN</option>
+                <option>DEPARTURED</option>
+                <option>COMPLETED</option>
+                <option>PENDING</option>
+            </select>
+            <button id="add-flight-btn">Add Flight</button>
+        </div>
+
+        <div class="edit-flight">
+            <h3>Edit Flights</h3>
+            <select id="flight-edit-list"></select>
+            <button id="edit-flight-btn">Edit Selected</button>
+            <button id="remove-flight-btn">Remove Selected</button>
+            <!-- Flight editing form (hidden by default) -->
+            <div id="flight-edit-form" class="flight-edit-form">
+                <input type="text" id="edit-flight-number" placeholder="Flight">
+                <input type="text" id="edit-customer" placeholder="Customer">
+                <input type="text" id="edit-destination" placeholder="Destination">
+                <input type="date" id="edit-flight-date" placeholder="Date">
+                <input type="time" id="edit-flight-time">
+                <select id="edit-flight-status">
+                    <option>ON-TIME</option>
+                    <option>DELAYED</option>
+                    <option>CANCELLED</option>
+                    <option>CHECK-IN</option>
+                    <option>DEPARTURED</option>
+                    <option>COMPLETED</option>
+                    <option>PENDING</option>
+                </select>
+                <button id="save-edit-flight-btn">Save Changes</button>
+                <button id="cancel-edit-flight-btn">Cancel</button>
+            </div>
+        </div>
+
+        <div class="aircraft-status">
+            <h3>Aircraft Status</h3>
+            <select id="aircraft-status-select">
+                <option value="#4CAF50">Servicable</option>
+                <option value="#f9d71c">In-maintenance</option>
+                <option value="#f44336">AOG</option>
+            </select>
+            
+            <!-- Custom Status Notes Input -->
+            <div class="status-notes-input">
+                <h3>Custom Status Notes</h3>
+                <textarea id="custom-status-notes" placeholder="Enter custom status notes"></textarea>
+                <button id="update-status-notes-btn">Update Notes</button>
+            </div>
+        </div>
+
+        <!-- New: Aircraft Data Section -->
+        <div class="aircraft-data">
+            <h3>Aircraft Data</h3>
+            <div class="aircraft-data-form">
+                <div class="data-input-group">
+                    <label for="aircraft-location">Location</label>
+                    <input type="text" id="aircraft-location-input" placeholder="Location">
+                </div>
+                <div class="data-input-group">
+                    <label for="aircraft-flight-hours">Flight Hours</label>
+                    <input type="number" id="aircraft-flight-hours" placeholder="Flight Hours" step="0.01">
+                </div>
+                <div class="data-input-group">
+                    <label for="aircraft-hoist-cycles">Hoist Cycles</label>
+                    <input type="number" id="aircraft-hoist-cycles" placeholder="Hoist Cycles">
+                </div>
+                <div class="data-input-group">
+                    <label for="aircraft-last-maintenance">Last Maintenance</label>
+                    <input type="date" id="aircraft-last-maintenance">
+                </div>
+                <div class="data-input-group">
+                    <label for="aircraft-next-maintenance">Next Maintenance</label>
+                    <input type="date" id="aircraft-next-maintenance">
+                </div>
+                <button id="update-aircraft-data-btn">Update Aircraft Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- METAR Widget Script -->
+    <script async defer crossorigin="anonymous" src="https://metar-taf.com/embed-js/RCMQ?qnh=hPa&rh=rh&target=wkTKqfAW"></script>
+
+    <script type="module">
+    // Import the Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+    
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyBEGKY3UDzDKOrFKnfmMao3Z6Eq7ggQRaM",
+        authDomain: "heliserver.firebaseapp.com",
+        databaseURL: "https://heliserver-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "heliserver",
+        storageBucket: "heliserver.firebasestorage.app",
+        messagingSenderId: "377374350041",
+        appId: "1:377374350041:web:4136d3316a934bc5c43cc8",
+        measurementId: "G-9TLEQY0WJ9"   
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const database = getDatabase(app);
+        
+        // Make Firebase functions available globally
+        window.firebaseDB = {
+            database: database,
+            ref: ref,
+            set: set,
+            onValue: onValue
+        };
+        
+        // Initialize the dashboard after Firebase is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof initDashboard === 'function') {
+                initDashboard();
+            }
+        });
     </script>
-  </body>
+
+    <script src="script.js"></script>
+</body>
 </html>
