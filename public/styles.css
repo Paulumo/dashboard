@@ -1574,3 +1574,196 @@ h3 {
     font-size: 0.9rem;
   }
 }
+
+/* Improve color contrast for mobile devices */
+@media (max-width: 768px) {
+    /* Darker background for better contrast */
+    body {
+      background-color: #061220;
+      background: 
+        radial-gradient(circle at 15% 50%, rgba(25, 118, 210, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(100, 65, 165, 0.15) 0%, transparent 25%),
+        linear-gradient(135deg, #05091a 0%, #071425 50%, #0a1e30 100%);
+    }
+  
+    /* Increase panel contrast for better visibility */
+    .panel {
+      background-color: rgba(66, 123, 180, 0.35);
+      border: 1px solid rgba(100, 150, 200, 0.4);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Improve text contrast */
+    h2, h3, .detail-label, .detail-value, p, td, th {
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Make the status headers more visible */
+    .status-header.serviceable {
+      background-color: #10b981;
+      background-image: linear-gradient(45deg, #0e9f6e, #047857);
+    }
+    
+    .status-header.maintenance {
+      background-color: #f59e0b;
+      background-image: linear-gradient(45deg, #d97706, #b45309);
+    }
+    
+    .status-header.aog {
+      background-color: #ef4444;
+      background-image: linear-gradient(45deg, #dc2626, #b91c1c);
+    }
+  
+    /* Improve visibility of notes container */
+    .notes-container {
+      background-color: rgba(20, 30, 40, 0.7);
+      border-width: 2px;
+      color: #ffffff;
+    }
+    
+    /* Row spacing in tables for better touch targets */
+    .flights-table td, .flights-table th {
+      padding: 14px 10px;
+    }
+    
+    /* Improve status indicators */
+    .status-on-time, .status-departured {
+      color: #4ade80;
+      font-weight: 600;
+    }
+    
+    .status-delayed {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+    
+    .status-cancelled {
+      color: #f87171;
+      font-weight: 600;
+    }
+    
+    /* Enhance dashboard layout */
+    .dashboard {
+      padding: 12px;
+      gap: 12px;
+    }
+    
+    /* Fix the top row layout */
+    .top-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    /* Adjust panel spacing */
+    .metar-section, .windy-section, .crew-section {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    /* Fix the height for windy section */
+    .windy-widget {
+      height: 320px;
+    }
+    
+    /* Mobile-friendly bottom row */
+    .bottom-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    /* Helicopter display improvements */
+    .dashboard-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    /* Center helicopter image */
+    .helicopter-image {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background-color: rgba(30, 60, 90, 0.4);
+    }
+    
+    /* Detail grid for mobile */
+    .details-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    /* Improve METAR visibility */
+    .metar-info {
+      color: #000000;
+      font-weight: 500;
+    }
+    
+    /* Better date/time visibility */
+    .display-date {
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    .display-time {
+      background-color: rgba(30, 60, 90, 0.4);
+      border: 2px solid #ffd868;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  /* Extra adjustments for very small screens */
+  @media (max-width: 480px) {
+    /* Compact the flight table */
+    .flights-table {
+      font-size: 0.8rem;
+    }
+    
+    .flights-table th, .flights-table td {
+      padding: 10px 5px;
+    }
+    
+    /* Simplify dashboard padding */
+    .dashboard {
+      padding: 8px;
+      gap: 8px;
+    }
+    
+    /* More compact details grid */
+    .details-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    
+    /* Smaller helicopter image */
+    .helicopter-image {
+      height: 150px;
+    }
+    
+    /* Compact datetime display */
+    .datetime-container {
+      font-size: 1.3rem;
+    }
+    
+    .display-date {
+      font-size: 1.3rem;
+    }
+    
+    .display-time {
+      font-size: 1.6rem;
+      padding: 6px 10px;
+    }
+    
+    /* Adjust METAR/map heights */
+    .metar-widget, .windy-widget {
+      height: 300px;
+    }
+    
+    /* Fix the tracking container height */
+    #tracking-container, .radar-container, #adsb-iframe {
+      height: 300px !important;
+    }
+  }
